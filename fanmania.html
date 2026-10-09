@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="FanMania brings fans together for the moments, teams, and communities they love. Find your people and bring the noise.">
+  <title>FanMania — Find your people. Bring the noise.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #ffffff;
+      --panel: #f3f4f6;
+      --white: #15171d;
+      --muted: #555b66;
+      --red: #f12b43;
+      --blue: #3178ff;
+      --line: rgba(9,10,14,.13);
+      --display: "Barlow Condensed", Impact, sans-serif;
+      --body: "DM Sans", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--ink); color: var(--white); font-family: var(--body); }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    .site-shell { overflow: clip; }
+    .wrap { width: min(1160px, calc(100% - 48px)); margin-inline: auto; }
+
+    .topbar {
+      position: fixed; z-index: 10; inset: 0 0 auto; height: 84px;
+      border-bottom: 1px solid rgba(9,10,14,.1);
+      background: rgba(255,255,255,.9);
+      box-shadow: 0 5px 22px rgba(9,10,14,.045);
+      backdrop-filter: blur(16px);
+    }
+    .nav { height: 100%; display: flex; align-items: center; justify-content: space-between; }
+    .brand { display: inline-flex; align-items: center; }
+    .brand img { display: block; width: 158px; height: auto; }
+    .nav-links { display: flex; align-items: center; gap: clamp(12px, 2vw, 25px); color: #343841; font-size: 12px; font-weight: 600; }
+    .nav-links a:not(.button):hover { color: var(--red); }
+    .menu-toggle { display: none; width: 42px; height: 42px; align-items: center; justify-content: center; border: 1px solid var(--line); border-radius: 4px; background: white; cursor: pointer; }
+    .menu-toggle svg { width: 19px; height: 19px; }
+    .button {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      min-height: 48px; padding: 0 22px; border: 0; border-radius: 5px;
+      background: var(--red); color: white; font-size: 13px; font-weight: 700;
+      transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+    }
+    .button:hover { transform: translateY(-3px); background: #ff4056; box-shadow: 0 10px 28px rgba(241,43,67,.25); }
+    .button svg { width: 15px; height: 15px; }
+    .button-outline { background: transparent; border: 1px solid rgba(9,10,14,.3); color: var(--white); }
+    .button-outline:hover { background: rgba(9,10,14,.06); box-shadow: none; }
+    section[id] { scroll-margin-top: 96px; }
+
+    .hero {
+      position: relative; min-height: 760px; padding: 166px 0 108px;
+      display: flex; align-items: center; isolation: isolate;
+      background:
+        radial-gradient(ellipse at 75% 54%, rgba(34,84,181,.12), transparent 34%),
+        radial-gradient(ellipse at 21% 83%, rgba(189,28,51,.09), transparent 30%),
+        #ffffff;
+    }
+    .hero::before {
+      content: ""; position: absolute; z-index: -1; inset: 0;
+      background-image: linear-gradient(rgba(9,10,14,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(9,10,14,.035) 1px, transparent 1px);
+      background-size: 68px 68px; mask-image: linear-gradient(to bottom, black, transparent 90%);
+    }
+    .hero-grid { display: grid; grid-template-columns: 1.03fr .97fr; align-items: center; gap: 36px; }
+    .eyebrow { display: flex; align-items: center; gap: 10px; color: #555b66; font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 25px; height: 2px; background: var(--red); }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { max-width: 620px; margin: 20px 0 18px; font-family: var(--display); font-size: clamp(68px, 8.7vw, 116px); font-weight: 900; letter-spacing: -.035em; line-height: .83; text-transform: uppercase; }
+    h1 .accent { color: var(--red); }
+    .hero-copy { max-width: 430px; margin-bottom: 29px; color: #555b66; font-size: 15px; line-height: 1.8; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .hero-note { display: flex; align-items: center; gap: 11px; margin-top: 33px; color: #555b66; font-size: 11px; }
+    .avatar-stack { display: flex; padding-left: 3px; }
+    .avatar { display: grid; width: 27px; height: 27px; margin-left: -4px; place-items: center; border: 2px solid var(--ink); border-radius: 50%; background: linear-gradient(135deg,#f89967,#963c45); color: white; font-size: 9px; font-weight: 700; }
+    .avatar:nth-child(2) { background: linear-gradient(135deg,#80c6ff,#4549a3); }
+    .avatar:nth-child(3) { background: linear-gradient(135deg,#a6cf7c,#44784b); }
+    .avatar:nth-child(4) { background: linear-gradient(135deg,#ec87ae,#813d83); }
+    .hero-note strong { color: #15171d; }
+
+    .visual { position: relative; min-height: 490px; display: grid; align-items: center; }
+    .hero-video { width: 100%; aspect-ratio: 16 / 11; object-fit: cover; border: 1px solid rgba(9,10,14,.12); border-radius: 8px; background: #e9edf3; box-shadow: 0 28px 70px rgba(18,35,60,.17); }
+    .video-caption { margin: 11px 0 0; color: #636a76; font-size: 9px; letter-spacing: .08em; text-align: right; text-transform: uppercase; }
+
+    .ticker { position: relative; overflow: hidden; padding: 17px 0; border-block: 1px solid rgba(9,10,14,.12); background: #f3f4f6; }
+    .ticker-track { display: flex; width: max-content; align-items: center; animation: marquee 28s linear infinite; }
+    .ticker-item { display: inline-flex; align-items: center; gap: 24px; padding: 0 25px; color: #242731; font-family: var(--display); font-size: 17px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; white-space: nowrap; }
+    .ticker-item::after { content: "✦"; color: var(--red); font-size: 13px; }
+
+    .section { padding: 112px 0; }
+    .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 42px; }
+    .section-heading h2 { max-width: 560px; margin: 13px 0 0; font-family: var(--display); font-size: clamp(46px, 6vw, 72px); font-weight: 800; line-height: .9; text-transform: uppercase; }
+    .section-heading h2 span { color: var(--red); }
+    .section-heading p { max-width: 310px; margin: 0 0 2px; color: var(--muted); font-size: 13px; line-height: 1.8; }
+    .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .feature-card { position: relative; min-height: 270px; overflow: hidden; padding: 26px; border: 1px solid var(--line); border-radius: 7px; background: linear-gradient(145deg, #ffffff, #f3f4f6); transition: transform .25s ease, border-color .25s ease; }
+    .feature-card:hover { transform: translateY(-7px); border-color: rgba(241,43,67,.6); }
+    .feature-number { color: #737985; font-family: var(--display); font-size: 12px; font-weight: 700; letter-spacing: .1em; }
+    .feature-icon { display: grid; width: 46px; height: 46px; margin: 23px 0 20px; place-items: center; border: 1px solid rgba(49,120,255,.3); border-radius: 7px; background: rgba(49,120,255,.1); color: #76a3ff; }
+    .feature-icon svg { width: 22px; height: 22px; }
+    .feature-card:nth-child(2) .feature-icon { border-color: rgba(241,43,67,.3); background: rgba(241,43,67,.1); color: #ff687b; }
+    .feature-card:nth-child(3) .feature-icon { border-color: rgba(9,10,14,.16); background: rgba(9,10,14,.05); color: #222631; }
+    .feature-card h3 { margin-bottom: 9px; font-family: var(--display); font-size: 25px; font-weight: 700; text-transform: uppercase; }
+    .feature-card p { max-width: 290px; margin-bottom: 0; color: var(--muted); font-size: 12px; line-height: 1.75; }
+    .card-watermark { position: absolute; right: 16px; bottom: -27px; color: rgba(9,10,14,.045); font-family: var(--display); font-size: 132px; font-weight: 900; line-height: 1; }
+
+    .journey { position: relative; padding: 105px 0; overflow: hidden; background: radial-gradient(ellipse at 75% 50%, rgba(49,120,255,.12), transparent 42%), linear-gradient(180deg, #f5f7fb, #fff); }
+    .journey::before, .journey::after { position: absolute; width: 330px; height: 330px; border: 1px solid rgba(49,120,255,.09); border-radius: 50%; content: ""; pointer-events: none; }
+    .journey::before { top: -190px; right: -90px; box-shadow: 0 0 0 35px rgba(49,120,255,.025), 0 0 0 75px rgba(49,120,255,.02); }
+    .journey::after { bottom: -245px; left: -120px; border-color: rgba(241,43,67,.1); }
+    .journey-inner { position: relative; z-index: 1; }
+    .journey-heading { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 35px; }
+    .journey-heading h2 { max-width: 600px; margin: 13px 0 0; font-family: var(--display); font-size: clamp(46px, 6vw, 72px); font-weight: 800; line-height: .9; text-transform: uppercase; }
+    .journey-heading h2 span { color: var(--red); }
+    .journey-heading p { max-width: 330px; margin: 0 0 3px; color: #555b66; font-size: 12px; line-height: 1.8; }
+    .timeline-glass { position: relative; overflow: hidden; padding: clamp(23px, 5vw, 55px); border: 1px solid rgba(255,255,255,.85); border-radius: 10px; background: linear-gradient(135deg, rgba(255,255,255,.82), rgba(229,237,250,.67)); box-shadow: 0 28px 80px rgba(27,51,89,.12), inset 0 1px rgba(255,255,255,.95); backdrop-filter: blur(22px) saturate(150%); -webkit-backdrop-filter: blur(22px) saturate(150%); }
+    .timeline-glass::before { position: absolute; top: -180px; right: -85px; width: 410px; height: 410px; border: 1px solid rgba(49,120,255,.1); border-radius: 50%; box-shadow: 0 0 0 35px rgba(49,120,255,.025), 0 0 0 75px rgba(49,120,255,.018); content: ""; pointer-events: none; }
+    .timeline-content { position: relative; z-index: 1; min-height: 190px; display: grid; grid-template-columns: .75fr 1.25fr; align-items: center; gap: 30px; }
+    .timeline-year { color: #15171d; font-family: var(--display); font-size: clamp(100px, 18vw, 205px); font-weight: 900; letter-spacing: -.065em; line-height: .72; text-shadow: 0 12px 34px rgba(49,120,255,.12); transition: opacity .18s ease, transform .18s ease; }
+    .timeline-year.is-changing { opacity: .35; transform: translateY(6px); }
+    .timeline-detail { max-width: 490px; }
+    .timeline-detail .year-label { color: #356fc4; font-size: 9px; font-weight: 700; letter-spacing: .17em; text-transform: uppercase; }
+    .timeline-detail h3 { margin: 12px 0 10px; font-family: var(--display); font-size: clamp(27px, 4vw, 43px); font-weight: 700; line-height: .95; text-transform: uppercase; }
+    .timeline-detail p { min-height: 43px; margin: 0; color: #505662; font-size: 12px; line-height: 1.8; }
+    .timeline-unverified { display: inline-block; margin-top: 13px; padding: 6px 8px; border: 1px solid rgba(21,23,29,.16); border-radius: 2px; color: #606570; font-size: 8px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
+    .timeline-slider-row { position: relative; z-index: 1; margin-top: 35px; padding-top: 23px; border-top: 1px solid rgba(21,23,29,.12); }
+    .timeline-range { width: 100%; height: 25px; margin: 0; appearance: none; -webkit-appearance: none; background: transparent; cursor: ew-resize; touch-action: pan-y; }
+    .timeline-range::-webkit-slider-runnable-track { height: 4px; border-radius: 4px; background: linear-gradient(to right, var(--red) 0 var(--slider-progress, 0%), rgba(21,23,29,.16) var(--slider-progress, 0%) 100%); }
+    .timeline-range::-moz-range-track { height: 4px; border-radius: 4px; background: rgba(21,23,29,.16); }
+    .timeline-range::-moz-range-progress { height: 4px; border-radius: 4px; background: var(--red); }
+    .timeline-range::-webkit-slider-thumb { width: 22px; height: 22px; margin-top: -9px; appearance: none; -webkit-appearance: none; border: 3px solid white; border-radius: 50%; background: var(--red); box-shadow: 0 2px 9px rgba(21,23,29,.25), 0 0 0 5px rgba(241,43,67,.14); }
+    .timeline-range::-moz-range-thumb { width: 17px; height: 17px; border: 3px solid white; border-radius: 50%; background: var(--red); box-shadow: 0 2px 9px rgba(21,23,29,.25), 0 0 0 5px rgba(241,43,67,.14); }
+    .timeline-range:focus-visible { outline: none; }
+    .timeline-range:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 4px #2873d8, 0 0 0 7px rgba(40,115,216,.2); }
+    .timeline-range:focus-visible::-moz-range-thumb { box-shadow: 0 0 0 4px #2873d8, 0 0 0 7px rgba(40,115,216,.2); }
+    .timeline-years { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); margin-top: 7px; color: #666c77; font-size: 8px; font-weight: 600; text-align: center; }
+    .timeline-years span:first-child { text-align: left; }
+    .timeline-years span:last-child { text-align: right; }
+    .timeline-years span[aria-current="true"] { color: #161922; }
+    .timeline-controls { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 24px; }
+    .timeline-controls button { display: inline-flex; min-height: 39px; align-items: center; justify-content: center; gap: 8px; padding: 0 13px; border: 1px solid rgba(21,23,29,.2); border-radius: 3px; background: rgba(255,255,255,.58); color: #222630; font-size: 10px; font-weight: 700; cursor: pointer; transition: background .2s ease, border-color .2s ease; }
+    .timeline-controls button:hover { border-color: var(--blue); background: white; }
+    .timeline-controls button:disabled { opacity: .42; cursor: not-allowed; }
+    .timeline-current { color: #565c67; font-size: 9px; font-weight: 600; }
+    .journey-note { max-width: 780px; margin: 14px 0 0; color: #727783; font-size: 9px; line-height: 1.7; }
+
+    .manifesto { position: relative; padding: 83px 0; overflow: hidden; background: linear-gradient(110deg, #c81e36, #ed2b43 55%, #d91f3a); }
+    .manifesto::after { content: "F"; position: absolute; right: 8%; top: -104px; color: rgba(0,0,0,.09); font-family: var(--display); font-size: 410px; font-weight: 900; line-height: 1; }
+    .manifesto-inner { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+    .manifesto h2 { max-width: 690px; margin: 10px 0 0; font-family: var(--display); font-size: clamp(47px, 6.8vw, 83px); font-weight: 900; line-height: .86; text-transform: uppercase; }
+    .manifesto .eyebrow::before { background: white; }
+    .manifesto .eyebrow { color: rgba(255,255,255,.78); }
+    .manifesto .button { flex: 0 0 auto; background: white; color: #17171a; }
+    .manifesto .button:hover { background: #f1f2f5; box-shadow: 0 10px 28px rgba(0,0,0,.18); }
+
+    .footer { padding: 35px 0; background: #f3f4f6; border-top: 1px solid var(--line); }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .footer .brand img { width: 130px; }
+    .footer p { margin: 0; color: #606570; font-size: 11px; }
+    .socials { display: flex; gap: 17px; color: #343841; font-size: 11px; font-weight: 600; }
+    .socials a:hover { color: var(--red); }
+
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .feature-card:nth-child(2) { transition-delay: .1s; }
+    .feature-card:nth-child(3) { transition-delay: .2s; }
+    @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+    @keyframes marquee { to { transform: translateX(-50%); } }
+
+    @media (max-width: 850px) {
+      .hero { min-height: auto; padding: 145px 0 78px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 5px; }
+      .hero-content { position: relative; z-index: 2; }
+      .visual { min-height: 0; margin-top: 7px; }
+      .section { padding: 82px 0; }
+      .journey { padding: 78px 0; }
+      .journey-heading { display: block; margin-bottom: 25px; }
+      .journey-heading p { margin-top: 16px; }
+      .timeline-content { min-height: 250px; grid-template-columns: 1fr; gap: 25px; align-content: center; }
+      .timeline-year { font-size: clamp(105px, 30vw, 165px); }
+      .timeline-slider-row { margin-top: 25px; }
+      .timeline-controls { flex-wrap: wrap; }
+      .timeline-years { font-size: 7px; letter-spacing: -.04em; }
+      .timeline-current { order: -1; width: 100%; text-align: center; }
+    }
+    @media (max-width: 600px) {
+      .wrap { width: min(100% - 36px, 480px); }
+      .topbar { height: 70px; }
+      .brand img { width: 133px; }
+      .nav { position: relative; }
+      .menu-toggle { display: inline-flex; }
+      .nav-links { position: absolute; top: 69px; right: -18px; left: -18px; display: none; align-items: stretch; gap: 0; padding: 7px 19px 18px; border-bottom: 1px solid var(--line); background: rgba(255,255,255,.98); box-shadow: 0 15px 26px rgba(9,10,14,.08); }
+      .nav-links.is-open { display: flex; flex-direction: column; }
+      .nav-links > a:not(.button) { padding: 13px 2px; border-bottom: 1px solid rgba(9,10,14,.08); font-size: 12px; }
+      .nav-links .button { margin-top: 12px; min-height: 42px; padding: 0 14px; font-size: 11px; }
+      .hero { padding-top: 132px; }
+      h1 { font-size: clamp(66px, 17vw, 90px); }
+      .hero-copy { max-width: 360px; font-size: 13px; }
+      .visual { margin-inline: 0; }
+      .hero-video { aspect-ratio: 4 / 3; }
+      .section { padding: 72px 0; }
+      .section-heading { display: block; margin-bottom: 28px; }
+      .section-heading p { margin-top: 17px; }
+      .feature-grid { grid-template-columns: 1fr; gap: 11px; }
+      .feature-card { min-height: 235px; }
+      .feature-icon { margin: 17px 0 15px; }
+      .manifesto { padding: 65px 0; }
+      .manifesto-inner { align-items: flex-start; flex-direction: column; }
+      .manifesto h2 { font-size: 58px; }
+      .manifesto::after { right: -20px; top: 20px; font-size: 280px; }
+      .footer-inner { flex-wrap: wrap; }
+      .footer p { order: 3; width: 100%; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="site-shell">
+    <header class="topbar">
+      <nav class="nav wrap" aria-label="Main navigation">
+        <a class="brand" href="#home" aria-label="FanMania home">
+          <img src="Screenshot_2026-10-06_143455-removebg-preview.png" alt="FanMania">
+        </a>
+        <div class="nav-links" id="nav-links">
+          <a href="#about">About</a>
+          <a href="products.html">Products</a>
+          <a href="portfolio.html">Portfolio</a>
+          <a href="#journey">Our journey</a>
+          <a href="contact.html">Contact us</a>
+          <a class="button" href="contact.html">Partner with us <span aria-hidden="true">↗</span></a>
+        </div>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open navigation" aria-controls="nav-links" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="home">
+        <div class="hero-grid wrap">
+          <div class="hero-content">
+            <div class="eyebrow">For the love of the game</div>
+            <h1>Find your<br>people.<br><span class="accent">Bring the</span><br>noise.</h1>
+            <p class="hero-copy">The best moments are better together. FanMania is where passion finds its people — and every fan gets a front-row seat.</p>
+            <div class="hero-actions">
+              <a class="button" href="#join">Find your community <span aria-hidden="true">↗</span></a>
+              <a class="button button-outline" href="#about">Discover the vibe</a>
+            </div>
+            <div class="hero-note">
+              <div class="avatar-stack" aria-hidden="true">
+                <span class="avatar">J</span><span class="avatar">M</span><span class="avatar">A</span><span class="avatar">K</span>
+              </div>
+              <span><strong>Your kind of people</strong> are already here</span>
+            </div>
+          </div>
+          <div class="visual">
+            <video class="hero-video" controls autoplay muted loop playsinline preload="metadata" aria-label="FanMania e-commerce presence video">
+              <source src="FM%20Ecom%20presence.mp4" type="video/mp4">
+              Your browser does not support embedded video. <a href="FM%20Ecom%20presence.mp4">Play the FanMania video</a>.
+            </video>
+            <p class="video-caption">FanMania · E-commerce presence</p>
+          </div>
+        </div>
+      </section>
+
+      <div class="ticker" aria-label="FanMania values">
+        <div class="ticker-track" aria-hidden="true">
+          <span class="ticker-item">More than a game</span><span class="ticker-item">All fans welcome</span><span class="ticker-item">Feel every moment</span><span class="ticker-item">Together is better</span>
+          <span class="ticker-item">More than a game</span><span class="ticker-item">All fans welcome</span><span class="ticker-item">Feel every moment</span><span class="ticker-item">Together is better</span>
+        </div>
+      </div>
+
+      <section class="section wrap" id="about">
+        <div class="section-heading reveal">
+          <div>
+            <div class="eyebrow">This is your home crowd</div>
+            <h2>Bring your passion.<br><span>Find your people.</span></h2>
+          </div>
+          <p>From match-day nerves to last-second wins, we make room for every feeling, every fan, and every unforgettable moment.</p>
+        </div>
+        <div class="feature-grid" id="community">
+          <article class="feature-card reveal">
+            <span class="feature-number">01 / YOUR CREW</span>
+            <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M2.8 19c.4-3.3 2.7-5 6.2-5s5.8 1.7 6.2 5M16 5.2a3.2 3.2 0 0 1 0 6.2m2 2.7c2 .7 3 2.3 3.2 4.9"/></svg></div>
+            <h3>Find your fan family</h3>
+            <p>Meet the people who get it. Share your colors, your chants, and that thing your team always does.</p>
+            <span class="card-watermark" aria-hidden="true">01</span>
+          </article>
+          <article class="feature-card reveal">
+            <span class="feature-number">02 / ALL THE FEELS</span>
+            <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20.8 8.9c0 5.3-8.8 11-8.8 11s-8.8-5.7-8.8-11A4.9 4.9 0 0 1 12 6.2a4.9 4.9 0 0 1 8.8 2.7Z"/><path d="m8.5 12 2.2 2.2 4.8-5"/></svg></div>
+            <h3>Feel every moment</h3>
+            <p>The highs hit harder when you share them. Make every game day a memory worth keeping.</p>
+            <span class="card-watermark" aria-hidden="true">02</span>
+          </article>
+          <article class="feature-card reveal">
+            <span class="feature-number">03 / YOUR GAME</span>
+            <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8m0-12.8L5.6 18.4"/><circle cx="12" cy="12" r="9"/></svg></div>
+            <h3>Make it yours</h3>
+            <p>Big league, local club, or a team only you know about — there's a place for your kind of fan.</p>
+            <span class="card-watermark" aria-hidden="true">03</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="journey" id="journey" aria-labelledby="journey-title">
+        <div class="journey-inner wrap">
+          <div class="journey-heading reveal">
+            <div>
+              <div class="eyebrow">The FanMania timeline</div>
+              <h2 id="journey-title">One year at a time.<br><span>Still in motion.</span></h2>
+            </div>
+            <p>Scrub through every year from 2004 to 2026. Confirmed company history is shown where available; other years are ready for your real milestones.</p>
+          </div>
+          <div class="timeline-glass reveal">
+            <div class="timeline-content" aria-live="polite" aria-atomic="true">
+              <div class="timeline-year" id="timeline-year">2004</div>
+              <div class="timeline-detail">
+                <div class="year-label" id="timeline-label">The beginning</div>
+                <h3 id="timeline-title">FanMania starts its journey.</h3>
+                <p id="timeline-copy">FanMania started in 2004. Add the verified details of the founding and early years here.</p>
+                <span class="timeline-unverified" id="timeline-status">Confirmed starting year</span>
+              </div>
+            </div>
+            <div class="timeline-slider-row">
+              <label class="section-kicker" for="timeline-slider">Explore the years</label>
+              <input class="timeline-range" id="timeline-slider" type="range" min="0" max="11" step="1" value="0" aria-valuetext="2004">
+              <div class="timeline-years" id="timeline-year-markers" aria-hidden="true"></div>
+            </div>
+            <div class="timeline-controls">
+              <button type="button" id="timeline-previous" aria-label="Go to previous year"><span aria-hidden="true">←</span> Previous year</button>
+              <span class="timeline-current">Selected year: <output id="timeline-output" for="timeline-slider">2004</output></span>
+              <button type="button" id="timeline-next" aria-label="Go to next year">Next year <span aria-hidden="true">→</span></button>
+            </div>
+          </div>
+          <p class="journey-note">FanMania’s 2004 start and 2026 present-day endpoint are confirmed. Intermediate years are intentionally left as editable placeholders until verified company history is provided.</p>
+        </div>
+      </section>
+
+      <section class="manifesto" id="join">
+        <div class="manifesto-inner wrap">
+          <div>
+            <div class="eyebrow">The crowd is better together</div>
+            <h2>Whatever you cheer for,<br>you belong here.</h2>
+          </div>
+          <a class="button" href="mailto:hello@fanmania.com">Join FanMania <span aria-hidden="true">↗</span></a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner wrap">
+        <a class="brand" href="#home" aria-label="FanMania home">
+          <img src="Screenshot_2026-10-06_143455-removebg-preview.png" alt="FanMania">
+        </a>
+        <p>© <span id="year"></span> FanMania. Made for the love of it.</p>
+        <div class="socials"><a href="#join">Instagram</a><a href="#join">TikTok</a><a href="#join">Contact</a></div>
+      </div>
+    </footer>
+  </div>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const menuToggle = document.getElementById("menu-toggle");
+    const menuLinks = document.getElementById("nav-links");
+    function closeMenu() {
+      menuLinks.classList.remove("is-open");
+      menuToggle.setAttribute("aria-expanded", "false");
+      menuToggle.setAttribute("aria-label", "Open navigation");
+    }
+    menuToggle.addEventListener("click", () => {
+      const open = menuToggle.getAttribute("aria-expanded") === "true";
+      menuToggle.setAttribute("aria-expanded", String(!open));
+      menuToggle.setAttribute("aria-label", open ? "Open navigation" : "Close navigation");
+      menuLinks.classList.toggle("is-open", !open);
+    });
+    menuLinks.querySelectorAll("a").forEach(link => link.addEventListener("click", closeMenu));
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape") closeMenu();
+    });
+
+    const timelineSlider = document.getElementById("timeline-slider");
+    const timelineYear = document.getElementById("timeline-year");
+    const timelineLabel = document.getElementById("timeline-label");
+    const timelineTitle = document.getElementById("timeline-title");
+    const timelineCopy = document.getElementById("timeline-copy");
+    const timelineStatus = document.getElementById("timeline-status");
+    const timelineOutput = document.getElementById("timeline-output");
+    const timelinePrevious = document.getElementById("timeline-previous");
+    const timelineNext = document.getElementById("timeline-next");
+
+    const timelineYears = [2004, 2005, 2007, 2009, 2012, 2014, 2016, 2018, 2020, 2022, 2024, 2026];
+    const timelineMarkers = document.getElementById("timeline-year-markers");
+    timelineYears.forEach(year => {
+      const marker = document.createElement("span");
+      marker.textContent = String(year);
+      timelineMarkers.appendChild(marker);
+    });
+
+    const timelineData = timelineYears.map(year => {
+      return {
+        year,
+        label: "A year in the story",
+        title: "Add this year’s chapter.",
+        copy: "No verified company update for " + year + " has been provided yet. Add an approved milestone or company detail for this year here.",
+        status: "Company history to be confirmed"
+      };
+    });
+
+    timelineData[0] = {
+        year: 2004,
+        label: "The beginning",
+        title: "FanMania starts its journey.",
+        copy: "FanMania started in 2004. Add the verified details of the founding and early years here.",
+        status: "Confirmed starting year"
+    };
+    timelineData[timelineData.length - 1] = {
+        year: 2026,
+        label: "FanMania today",
+        title: "The story continues.",
+        copy: "In 2026, FanMania is an international licensing and children’s merchandise company working with entertainment and character IPs.",
+        status: "Present day"
+    };
+
+    function updateTimeline() {
+      const selectedIndex = Number(timelineSlider.value);
+      const year = timelineYears[selectedIndex];
+      const information = timelineData[selectedIndex];
+
+      timelineYear.textContent = String(year);
+      timelineLabel.textContent = information.label;
+      timelineTitle.textContent = information.title;
+      timelineCopy.textContent = information.copy;
+      timelineStatus.textContent = information.status;
+      timelineOutput.value = String(year);
+      timelineOutput.textContent = String(year);
+      timelineSlider.setAttribute("aria-valuetext", String(year));
+      timelineSlider.style.setProperty("--slider-progress", (selectedIndex / (timelineYears.length - 1) * 100) + "%");
+      timelinePrevious.disabled = selectedIndex === 0;
+      timelineNext.disabled = selectedIndex === timelineYears.length - 1;
+    }
+
+    timelineSlider.addEventListener("input", updateTimeline);
+    timelinePrevious.addEventListener("click", () => {
+      timelineSlider.value = String(Number(timelineSlider.value) - 1);
+      updateTimeline();
+    });
+    timelineNext.addEventListener("click", () => {
+      timelineSlider.value = String(Number(timelineSlider.value) + 1);
+      updateTimeline();
+    });
+    updateTimeline();
+
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll(".reveal").forEach(element => revealObserver.observe(element));
+  </script>
+</body>
+</html>

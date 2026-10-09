@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="Explore FanMania's licensed children's apparel, footwear and accessories categories.">
+  <title>Products — FanMania</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --red:#f12b43; --blue:#3178ff; --ink:#15171d; --muted:#555b66; --line:rgba(9,10,14,.13); --display:"Barlow Condensed",Impact,sans-serif; --body:"DM Sans",Arial,sans-serif; font-family:var(--body); scroll-behavior:smooth; }
+    * { box-sizing:border-box; } body { margin:0; color:var(--ink); background:#fff; } a { color:inherit; text-decoration:none; } button { font:inherit; }
+    .wrap { width:min(1160px,calc(100% - 48px)); margin:auto; } .skip { position:fixed; z-index:30; top:8px; left:8px; padding:12px; background:white; transform:translateY(-150%); } .skip:focus { transform:translateY(0); }
+    .topbar { position:fixed; z-index:20; inset:0 0 auto; height:78px; border-bottom:1px solid var(--line); background:rgba(255,255,255,.92); box-shadow:0 5px 22px rgba(9,10,14,.045); backdrop-filter:blur(16px); }
+    .nav { height:100%; display:flex; align-items:center; justify-content:space-between; } .brand img { display:block; width:150px; height:auto; }
+    .nav-links { display:flex; align-items:center; gap:23px; font-size:12px; font-weight:600; } .nav-links a:hover,.nav-links [aria-current="page"] { color:var(--red); }
+    .button { display:inline-flex; min-height:44px; align-items:center; justify-content:center; padding:0 18px; border-radius:3px; background:var(--red); color:#fff!important; font-size:11px; font-weight:700; }
+    .menu-toggle { display:none; width:42px; height:42px; border:1px solid var(--line); border-radius:4px; background:white; }
+    main { padding-top:78px; } .hero { padding:86px 0 66px; background:radial-gradient(ellipse at 85% 25%,rgba(49,120,255,.12),transparent 35%),linear-gradient(180deg,#f7f8fb,#fff); }
+    .eyebrow { color:#585e69; font-size:10px; font-weight:700; letter-spacing:.17em; text-transform:uppercase; } h1,h2,h3,p { margin-top:0; }
+    h1,h2 { font-family:var(--display); font-size:clamp(58px,9vw,112px); font-weight:900; letter-spacing:-.025em; line-height:.84; text-transform:uppercase; }
+    h1 { max-width:800px; margin:17px 0 20px; } h1 span { color:var(--red); } .intro { max-width:540px; color:var(--muted); font-size:14px; line-height:1.8; }
+    .categories { display:grid; grid-template-columns:repeat(6,1fr); gap:12px; padding:38px 0 90px; }
+    .category { grid-column:span 2; min-height:255px; display:flex; flex-direction:column; justify-content:space-between; padding:22px; border:1px solid var(--line); background:linear-gradient(145deg,#f5f6f8,#fff); transition:transform .2s,border-color .2s; }
+    .category:nth-child(4),.category:nth-child(5) { grid-column:span 3; }
+    .category:hover { transform:translateY(-5px); border-color:rgba(241,43,67,.5); }
+    .category-art { position:relative; height:112px; display:grid; place-items:center; overflow:hidden; background:radial-gradient(circle,rgba(49,120,255,.12),transparent 65%); }
+    .category-art::before,.category-art::after { position:absolute; width:100px; height:100px; border:1px solid rgba(49,120,255,.17); border-radius:50%; content:""; }
+    .category-art::after { width:70px; height:70px; border-color:rgba(241,43,67,.2); }
+    .shape { position:relative; z-index:1; width:70px; height:85px; background:linear-gradient(140deg,#233b60,#3178ff); clip-path:polygon(22% 5%,40% 0,50% 9%,60% 0,78% 5%,100% 27%,82% 43%,72% 33%,72% 100%,28% 100%,28% 33%,18% 43%,0 27%); filter:drop-shadow(0 10px 12px rgba(9,10,14,.2)); }
+    .category[data-shape="shoe"] .shape { width:96px;height:44px;border-radius:22px 30px 12px 14px;background:linear-gradient(150deg,#fff 0 55%,#3178ff 56% 70%,#1c2433 71%);clip-path:none;transform:rotate(-15deg); }
+    .category[data-shape="clog"] .shape { width:93px;height:51px;border-radius:50% 50% 35% 35%;background:linear-gradient(140deg,#ff5267,#c7142c);clip-path:none;transform:rotate(-12deg); }
+    .category[data-shape="sandal"] .shape { width:42px;height:95px;border:6px solid #263954;border-top-width:18px;border-bottom-width:12px;border-radius:50%;background:#ececea;clip-path:none;transform:rotate(12deg); }
+    .category[data-shape="accessories"] .shape { width:73px;height:72px;border:4px solid white;border-radius:5px;background:linear-gradient(140deg,#3178ff 0 48%,#f12b43 49%);clip-path:none;transform:rotate(-7deg); }
+    .category h2 { margin:17px 0 6px; font-size:32px; line-height:.95; } .category p { max-width:310px; margin:0; color:var(--muted); font-size:11px; line-height:1.7; }
+    .notice { margin:-61px auto 75px; padding:14px 16px; border-left:3px solid var(--blue); background:#f3f5f8; color:#555b66; font-size:10px; line-height:1.7; }
+    .cta { padding:62px 0; background:linear-gradient(110deg,#c81e36,#ed2b43); color:white; } .cta-row { display:flex; align-items:center; justify-content:space-between; gap:22px; }
+    .cta h2 { max-width:690px; margin:0; font-size:clamp(42px,6vw,70px); } .cta a { flex:none; padding:15px 18px; border-radius:3px; background:white; color:#17171a; font-size:11px; font-weight:700; }
+    footer { padding:25px 0; background:#f3f4f6; color:#686e79; font-size:10px; } .footer-row { display:flex; align-items:center; justify-content:space-between; gap:15px; } footer img { width:125px; }
+    @media(max-width:720px) { .wrap{width:calc(100% - 36px)} .topbar{height:68px}.brand img{width:130px}.menu-toggle{display:grid;place-items:center}.nav{position:relative}.nav-links{position:absolute;top:67px;right:-18px;left:-18px;display:none;align-items:stretch;gap:0;padding:8px 18px 17px;border-bottom:1px solid var(--line);background:#fff}.nav-links.is-open{display:flex;flex-direction:column}.nav-links a:not(.button){padding:13px 3px;border-bottom:1px solid var(--line)}.nav-links .button{margin-top:12px}.hero{padding:65px 0 45px}.categories{grid-template-columns:repeat(2,1fr);gap:9px;padding:25px 0 80px}.category,.category:nth-child(4),.category:nth-child(5){grid-column:span 1;min-height:228px;padding:15px}.category h2{font-size:26px}.notice{margin:-62px auto 55px}.cta-row{align-items:flex-start;flex-direction:column}.footer-row{flex-wrap:wrap}.footer-row span{width:100%;order:3} }
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important}}
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="topbar"><nav class="nav wrap" aria-label="Main navigation">
+    <a class="brand" href="fanmania.html" aria-label="FanMania home"><img src="Screenshot_2026-10-06_143455-removebg-preview.png" alt="FanMania"></a>
+    <div class="nav-links" id="nav-links">
+      <a href="fanmania.html#about">About</a><a href="products.html" aria-current="page">Products</a><a href="portfolio.html">Portfolio</a><a href="fanmania.html#journey">Our journey</a><a href="contact.html">Contact us</a><a class="button" href="contact.html">Partner with us ↗</a>
+    </div>
+    <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open navigation" aria-controls="nav-links" aria-expanded="false">☰</button>
+  </nav></header>
+  <main id="main">
+    <section class="hero"><div class="wrap">
+      <div class="eyebrow">Product categories</div><h1>Beloved worlds.<br><span>Everyday wear.</span></h1>
+      <p class="intro">FanMania’s licensed merchandise offering spans children’s apparel, footwear and accessories. Explore the categories—not a retail catalogue.</p>
+    </div></section>
+    <section class="categories wrap" aria-label="Product categories">
+      <article class="category" data-shape="apparel"><div class="category-art"><span class="shape" aria-hidden="true"></span></div><div><h2>T-shirts & apparel</h2><p>Children’s clothing featuring licensed entertainment and character properties.</p></div></article>
+      <article class="category" data-shape="shoe"><div class="category-art"><span class="shape" aria-hidden="true"></span></div><div><h2>Shoes</h2><p>Footwear categories that bring favourite worlds into everyday wear.</p></div></article>
+      <article class="category" data-shape="clog"><div class="category-art"><span class="shape" aria-hidden="true"></span></div><div><h2>Clogs</h2><p>Licensed clog concepts for young fans and their favourite characters.</p></div></article>
+      <article class="category" data-shape="sandal"><div class="category-art"><span class="shape" aria-hidden="true"></span></div><div><h2>Sandals</h2><p>Children’s sandals as part of the licensed footwear range.</p></div></article>
+      <article class="category" data-shape="accessories"><div class="category-art"><span class="shape" aria-hidden="true"></span></div><div><h2>Accessories</h2><p>Character-led accessories and other licensed merchandise.</p></div></article>
+    </section>
+    <p class="notice wrap">The graphics on this page are illustrative placeholders, not photographs of actual FanMania products. Replace them with approved product images and confirmed product details before publication.</p>
+    <section class="cta"><div class="cta-row wrap"><h2>Have a product or retail enquiry?</h2><a href="contact.html">Talk to FanMania ↗</a></div></section>
+  </main>
+  <footer><div class="footer-row wrap"><a href="fanmania.html"><img src="Screenshot_2026-10-06_143455-removebg-preview.png" alt="FanMania"></a><span>© <span id="year"></span> FanMania</span><a href="contact.html">Business enquiries</a></div></footer>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+    const toggle = document.getElementById("menu-toggle"), links = document.getElementById("nav-links");
+    function closeMenu() { links.classList.remove("is-open"); toggle.setAttribute("aria-expanded","false"); toggle.setAttribute("aria-label","Open navigation"); }
+    toggle.addEventListener("click", () => { const open = toggle.getAttribute("aria-expanded") === "true"; toggle.setAttribute("aria-expanded",String(!open)); toggle.setAttribute("aria-label",open?"Open navigation":"Close navigation"); links.classList.toggle("is-open",!open); });
+    links.querySelectorAll("a").forEach(link => link.addEventListener("click",closeMenu));
+    document.addEventListener("keydown", event => { if (event.key === "Escape") closeMenu(); });
+  </script>
+</body>
+</html>
