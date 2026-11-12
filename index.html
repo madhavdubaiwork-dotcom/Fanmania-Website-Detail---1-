@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#ffffff">
-  <meta name="description" content="FanMania brings fans together for the moments, teams, and communities they love. Find your people and bring the noise.">
-  <title>FanMania — Find your people. Bring the noise.</title>
+  <meta name="description" content="Their favourite characters. Their everyday essentials. That's Fanmania.">
+  <title>FanMania — Their favourite characters. Their everyday essentials. That's Fanmania.</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -21,6 +21,15 @@
       --line: rgba(9,10,14,.13);
       --display: "Barlow Condensed", Impact, sans-serif;
       --body: "DM Sans", Arial, sans-serif;
+    }
+
+    html[data-theme="dark"] {
+      color-scheme: dark;
+      --ink: #11141a;
+      --panel: #1b2029;
+      --white: #f4f6fb;
+      --muted: #aab1bf;
+      --line: rgba(255,255,255,.14);
     }
 
     * { box-sizing: border-box; }
@@ -43,6 +52,11 @@
     .brand img { display: block; width: 158px; height: auto; }
     .nav-links { display: flex; align-items: center; gap: clamp(12px, 2vw, 25px); color: #343841; font-size: 12px; font-weight: 600; }
     .nav-links a:not(.button):hover { color: var(--red); }
+    .theme-toggle { display: inline-flex; align-items: center; gap: 10px; padding: 0; border: 0; background: transparent; color: var(--white); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; transition: color .2s ease, transform .2s ease; }
+    .theme-toggle:hover { color: var(--blue); transform: translateY(-1px); }
+    .theme-toggle-label { line-height: 1; }
+    .theme-toggle-track { position: relative; display: inline-block; width: 38px; height: 20px; border: 1px solid var(--line); border-radius: 999px; background: rgba(9,10,14,.08); transition: background .2s ease, border-color .2s ease; }
+    .theme-toggle-knob { position: absolute; top: 2px; left: 2px; width: 14px; height: 14px; border-radius: 50%; background: #ffffff; box-shadow: 0 1px 4px rgba(9,10,14,.22); transition: transform .2s ease, background .2s ease; }
     .menu-toggle { display: none; width: 42px; height: 42px; align-items: center; justify-content: center; border: 1px solid var(--line); border-radius: 4px; background: white; cursor: pointer; }
     .menu-toggle svg { width: 19px; height: 19px; }
     .button {
@@ -74,9 +88,9 @@
     .eyebrow { display: flex; align-items: center; gap: 10px; color: #555b66; font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
     .eyebrow::before { content: ""; width: 25px; height: 2px; background: var(--red); }
     h1, h2, h3, p { margin-top: 0; }
-    h1 { max-width: 620px; margin: 20px 0 18px; font-family: var(--display); font-size: clamp(68px, 8.7vw, 116px); font-weight: 900; letter-spacing: -.035em; line-height: .83; text-transform: uppercase; }
+    h1 { max-width: 560px; margin: 20px 0 18px; font-family: var(--display); font-size: clamp(52px, 6vw, 86px); font-weight: 800; letter-spacing: -.028em; line-height: .9; text-transform: uppercase; }
     h1 .accent { color: var(--red); }
-    .hero-copy { max-width: 430px; margin-bottom: 29px; color: #555b66; font-size: 15px; line-height: 1.8; }
+    .hero-copy { max-width: 430px; margin-bottom: 29px; color: #555b66; font-size: 13px; line-height: 1.7; }
     .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
     .hero-note { display: flex; align-items: center; gap: 11px; margin-top: 33px; color: #555b66; font-size: 11px; }
     .avatar-stack { display: flex; padding-left: 3px; }
@@ -121,33 +135,33 @@
     .journey-heading h2 { max-width: 600px; margin: 13px 0 0; font-family: var(--display); font-size: clamp(46px, 6vw, 72px); font-weight: 800; line-height: .9; text-transform: uppercase; }
     .journey-heading h2 span { color: var(--red); }
     .journey-heading p { max-width: 330px; margin: 0 0 3px; color: #555b66; font-size: 12px; line-height: 1.8; }
-    .timeline-glass { position: relative; overflow: hidden; padding: clamp(23px, 5vw, 55px); border: 1px solid rgba(255,255,255,.85); border-radius: 10px; background: linear-gradient(135deg, rgba(255,255,255,.82), rgba(229,237,250,.67)); box-shadow: 0 28px 80px rgba(27,51,89,.12), inset 0 1px rgba(255,255,255,.95); backdrop-filter: blur(22px) saturate(150%); -webkit-backdrop-filter: blur(22px) saturate(150%); }
-    .timeline-glass::before { position: absolute; top: -180px; right: -85px; width: 410px; height: 410px; border: 1px solid rgba(49,120,255,.1); border-radius: 50%; box-shadow: 0 0 0 35px rgba(49,120,255,.025), 0 0 0 75px rgba(49,120,255,.018); content: ""; pointer-events: none; }
+    .timeline-glass { position: relative; overflow: hidden; padding: clamp(23px, 5vw, 55px); border: 1px solid rgba(255,255,255,.85); border-radius: 10px; background: linear-gradient(135deg, rgba(255,255,255,.82), rgba(229,237,250,.67)); box-shadow: 0 28px 80px rgba(27,51,89,.12), inset 0 1px rgba(255,255,255,.95); backdrop-filter: blur(22px) saturate(150%); -webkit-backdrop-filter: blur(22px) saturate(150%); animation: timeline-float 12s ease-in-out infinite; }
+    .timeline-glass::before { position: absolute; top: -180px; right: -85px; width: 410px; height: 410px; border: 1px solid rgba(49,120,255,.1); border-radius: 50%; box-shadow: 0 0 0 35px rgba(49,120,255,.025), 0 0 0 75px rgba(49,120,255,.018); content: ""; pointer-events: none; animation: timeline-breathe 11s ease-in-out infinite; }
     .timeline-content { position: relative; z-index: 1; min-height: 190px; display: grid; grid-template-columns: .75fr 1.25fr; align-items: center; gap: 30px; }
-    .timeline-year { color: #15171d; font-family: var(--display); font-size: clamp(100px, 18vw, 205px); font-weight: 900; letter-spacing: -.065em; line-height: .72; text-shadow: 0 12px 34px rgba(49,120,255,.12); transition: opacity .18s ease, transform .18s ease; }
-    .timeline-year.is-changing { opacity: .35; transform: translateY(6px); }
+    .timeline-content.is-changing .timeline-year { animation: timeline-year-in .9s cubic-bezier(.2,.7,.25,1) both; }
+    .timeline-content.is-changing .timeline-detail { animation: timeline-detail-in 1.1s cubic-bezier(.2,.7,.25,1) both; }
+    .timeline-year { color: var(--red); background: linear-gradient(110deg, #f12b43 12%, #bd386e 52%, #3178ff 92%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-family: var(--body); font-size: clamp(88px, 15vw, 166px); font-weight: 800; letter-spacing: -.08em; line-height: .9; filter: drop-shadow(0 12px 18px rgba(49,120,255,.12)); }
     .timeline-detail { max-width: 490px; }
     .timeline-detail .year-label { color: #356fc4; font-size: 9px; font-weight: 700; letter-spacing: .17em; text-transform: uppercase; }
-    .timeline-detail h3 { margin: 12px 0 10px; font-family: var(--display); font-size: clamp(27px, 4vw, 43px); font-weight: 700; line-height: .95; text-transform: uppercase; }
+    .timeline-detail h3 { margin: 12px 0 10px; font-family: var(--body); font-size: clamp(23px, 3vw, 32px); font-weight: 700; line-height: 1.35; }
+    .timeline-detail h3::after { display: block; width: 48px; height: 3px; margin-top: 9px; border-radius: 2px; background: linear-gradient(90deg, #f12b43, #3178ff); content: ""; }
     .timeline-detail p { min-height: 43px; margin: 0; color: #505662; font-size: 12px; line-height: 1.8; }
     .timeline-unverified { display: inline-block; margin-top: 13px; padding: 6px 8px; border: 1px solid rgba(21,23,29,.16); border-radius: 2px; color: #606570; font-size: 8px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
     .timeline-slider-row { position: relative; z-index: 1; margin-top: 35px; padding-top: 23px; border-top: 1px solid rgba(21,23,29,.12); }
     .timeline-range { width: 100%; height: 25px; margin: 0; appearance: none; -webkit-appearance: none; background: transparent; cursor: ew-resize; touch-action: pan-y; }
-    .timeline-range::-webkit-slider-runnable-track { height: 4px; border-radius: 4px; background: linear-gradient(to right, var(--red) 0 var(--slider-progress, 0%), rgba(21,23,29,.16) var(--slider-progress, 0%) 100%); }
+    .timeline-range::-webkit-slider-runnable-track { height: 4px; border-radius: 4px; background: linear-gradient(to right, #f12b43 0, #3178ff var(--slider-progress, 0%), rgba(21,23,29,.16) var(--slider-progress, 0%) 100%); }
     .timeline-range::-moz-range-track { height: 4px; border-radius: 4px; background: rgba(21,23,29,.16); }
-    .timeline-range::-moz-range-progress { height: 4px; border-radius: 4px; background: var(--red); }
-    .timeline-range::-webkit-slider-thumb { width: 22px; height: 22px; margin-top: -9px; appearance: none; -webkit-appearance: none; border: 3px solid white; border-radius: 50%; background: var(--red); box-shadow: 0 2px 9px rgba(21,23,29,.25), 0 0 0 5px rgba(241,43,67,.14); }
-    .timeline-range::-moz-range-thumb { width: 17px; height: 17px; border: 3px solid white; border-radius: 50%; background: var(--red); box-shadow: 0 2px 9px rgba(21,23,29,.25), 0 0 0 5px rgba(241,43,67,.14); }
+    .timeline-range::-moz-range-progress { height: 4px; border-radius: 4px; background: linear-gradient(90deg, #f12b43, #bd386e 52%, #3178ff); }
+    .timeline-range::-webkit-slider-thumb { width: 22px; height: 22px; margin-top: -9px; appearance: none; -webkit-appearance: none; border: 3px solid white; border-radius: 50%; background: linear-gradient(135deg, #f12b43, #3178ff); box-shadow: 0 2px 9px rgba(21,23,29,.25), 0 0 0 5px rgba(49,120,255,.16); transition: box-shadow .2s ease, transform .2s ease; }
+    .timeline-range::-moz-range-thumb { width: 17px; height: 17px; border: 3px solid white; border-radius: 50%; background: linear-gradient(135deg, #f12b43, #3178ff); box-shadow: 0 2px 9px rgba(21,23,29,.25), 0 0 0 5px rgba(49,120,255,.16); transition: box-shadow .2s ease, transform .2s ease; }
+    .timeline-range:hover::-webkit-slider-thumb { transform: scale(1.12); box-shadow: 0 2px 9px rgba(21,23,29,.25), 0 0 0 8px rgba(241,43,67,.13); }
+    .timeline-range:hover::-moz-range-thumb { transform: scale(1.12); box-shadow: 0 2px 9px rgba(21,23,29,.25), 0 0 0 8px rgba(241,43,67,.13); }
     .timeline-range:focus-visible { outline: none; }
     .timeline-range:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 4px #2873d8, 0 0 0 7px rgba(40,115,216,.2); }
     .timeline-range:focus-visible::-moz-range-thumb { box-shadow: 0 0 0 4px #2873d8, 0 0 0 7px rgba(40,115,216,.2); }
-    .timeline-years { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); margin-top: 7px; color: #666c77; font-size: 8px; font-weight: 600; text-align: center; }
-    .timeline-years span:first-child { text-align: left; }
-    .timeline-years span:last-child { text-align: right; }
-    .timeline-years span[aria-current="true"] { color: #161922; }
     .timeline-controls { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 24px; }
-    .timeline-controls button { display: inline-flex; min-height: 39px; align-items: center; justify-content: center; gap: 8px; padding: 0 13px; border: 1px solid rgba(21,23,29,.2); border-radius: 3px; background: rgba(255,255,255,.58); color: #222630; font-size: 10px; font-weight: 700; cursor: pointer; transition: background .2s ease, border-color .2s ease; }
-    .timeline-controls button:hover { border-color: var(--blue); background: white; }
+    .timeline-controls button { display: inline-flex; min-height: 39px; align-items: center; justify-content: center; gap: 8px; padding: 0 13px; border: 1px solid rgba(21,23,29,.2); border-radius: 3px; background: rgba(255,255,255,.58); color: #222630; font-size: 10px; font-weight: 700; cursor: pointer; transition: background .2s ease, border-color .2s ease, transform .2s ease; }
+    .timeline-controls button:hover:not(:disabled) { border-color: var(--blue); background: white; transform: translateY(-2px); }
     .timeline-controls button:disabled { opacity: .42; cursor: not-allowed; }
     .timeline-current { color: #565c67; font-size: 9px; font-weight: 600; }
     .journey-note { max-width: 780px; margin: 14px 0 0; color: #727783; font-size: 9px; line-height: 1.7; }
@@ -168,12 +182,50 @@
     .socials { display: flex; gap: 17px; color: #343841; font-size: 11px; font-weight: 600; }
     .socials a:hover { color: var(--red); }
 
+    html[data-theme="dark"] .topbar { border-color: var(--line); background: rgba(17,20,26,.92); }
+    html[data-theme="dark"] .nav-links { color: #e0e4ec; }
+    html[data-theme="dark"] .menu-toggle { background: var(--panel); color: var(--white); }
+    html[data-theme="dark"] .button-outline { border-color: rgba(255,255,255,.32); }
+    html[data-theme="dark"] .button-outline:hover { background: rgba(255,255,255,.08); }
+    html[data-theme="dark"] .hero { background: radial-gradient(ellipse at 75% 54%, rgba(34,84,181,.18), transparent 34%), radial-gradient(ellipse at 21% 83%, rgba(189,28,51,.12), transparent 30%), #11141a; }
+    html[data-theme="dark"] .hero::before { background-image: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px); }
+    html[data-theme="dark"] .eyebrow,
+    html[data-theme="dark"] .hero-copy,
+    html[data-theme="dark"] .hero-note,
+    html[data-theme="dark"] .video-caption,
+    html[data-theme="dark"] .journey-heading p { color: #aab1bf; }
+    html[data-theme="dark"] .hero-note strong { color: var(--white); }
+    html[data-theme="dark"] .hero-video { border-color: var(--line); background: #1b2029; }
+    html[data-theme="dark"] .ticker { border-color: var(--line); background: #1b2029; }
+    html[data-theme="dark"] .ticker-item { color: #e4e7ed; }
+    html[data-theme="dark"] .feature-card { background: linear-gradient(145deg, #1b2029, #151922); }
+    html[data-theme="dark"] .feature-card:nth-child(3) .feature-icon { border-color: rgba(255,255,255,.16); background: rgba(255,255,255,.05); color: #dce2ed; }
+    html[data-theme="dark"] .card-watermark { color: rgba(255,255,255,.045); }
+    html[data-theme="dark"] .journey { background: radial-gradient(ellipse at 75% 50%, rgba(49,120,255,.14), transparent 42%), linear-gradient(180deg, #151922, #11141a); }
+    html[data-theme="dark"] .timeline-glass { border-color: rgba(255,255,255,.13); background: linear-gradient(135deg, rgba(35,41,53,.9), rgba(27,35,49,.82)); box-shadow: 0 28px 80px rgba(0,0,0,.24), inset 0 1px rgba(255,255,255,.1); }
+    html[data-theme="dark"] .timeline-detail p,
+    html[data-theme="dark"] .timeline-current { color: #b7bfcc; }
+    html[data-theme="dark"] .timeline-unverified { border-color: rgba(255,255,255,.2); color: #b7bfcc; }
+    html[data-theme="dark"] .timeline-slider-row { border-color: var(--line); }
+    html[data-theme="dark"] .timeline-range::-webkit-slider-runnable-track { background: linear-gradient(to right, #f12b43 0, #3178ff var(--slider-progress, 0%), rgba(255,255,255,.2) var(--slider-progress, 0%) 100%); }
+    html[data-theme="dark"] .timeline-range::-moz-range-track { background: rgba(255,255,255,.2); }
+    html[data-theme="dark"] .timeline-controls button { border-color: rgba(255,255,255,.22); background: rgba(17,20,26,.62); color: #e4e7ed; }
+    html[data-theme="dark"] .timeline-controls button:hover:not(:disabled) { background: #252c38; }
+    html[data-theme="dark"] .journey-note { color: #aab1bf; }
+    html[data-theme="dark"] .footer { background: #1b2029; }
+    html[data-theme="dark"] .footer p,
+    html[data-theme="dark"] .socials { color: #b7bfcc; }
+
     .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
     .feature-card:nth-child(2) { transition-delay: .1s; }
     .feature-card:nth-child(3) { transition-delay: .2s; }
     @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
     @keyframes marquee { to { transform: translateX(-50%); } }
+    @keyframes timeline-breathe { 0%,100% { opacity: .65; transform: scale(.97); } 50% { opacity: 1; transform: scale(1.03); } }
+    @keyframes timeline-float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+    @keyframes timeline-year-in { from { opacity: .35; transform: translateY(12px) scale(.97); filter: blur(5px); } to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); } }
+    @keyframes timeline-detail-in { from { opacity: .3; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
     @media (max-width: 850px) {
       .hero { min-height: auto; padding: 145px 0 78px; }
@@ -188,11 +240,9 @@
       .timeline-year { font-size: clamp(105px, 30vw, 165px); }
       .timeline-slider-row { margin-top: 25px; }
       .timeline-controls { flex-wrap: wrap; }
-      .timeline-years { font-size: 7px; letter-spacing: -.04em; }
       .timeline-current { order: -1; width: 100%; text-align: center; }
     }
-    @media (max-width: 600px) {
-      .wrap { width: min(100% - 36px, 480px); }
+    @media (max-width: 760px) {
       .topbar { height: 70px; }
       .brand img { width: 133px; }
       .nav { position: relative; }
@@ -201,6 +251,11 @@
       .nav-links.is-open { display: flex; flex-direction: column; }
       .nav-links > a:not(.button) { padding: 13px 2px; border-bottom: 1px solid rgba(9,10,14,.08); font-size: 12px; }
       .nav-links .button { margin-top: 12px; min-height: 42px; padding: 0 14px; font-size: 11px; }
+      html[data-theme="dark"] .nav-links { background: rgba(17,20,26,.98); }
+      html[data-theme="dark"] .nav-links > a:not(.button) { border-color: var(--line); }
+    }
+    @media (max-width: 600px) {
+      .wrap { width: min(100% - 36px, 480px); }
       .hero { padding-top: 132px; }
       h1 { font-size: clamp(66px, 17vw, 90px); }
       .hero-copy { max-width: 360px; font-size: 13px; }
@@ -224,6 +279,9 @@
       .reveal { opacity: 1; transform: none; }
     }
   </style>
+  <script src="dark-mode.js"></script>
+  <script src="page-animations.js"></script>
+  <link rel="stylesheet" href="dark-mode.css">
 </head>
 <body>
   <div class="site-shell">
@@ -238,8 +296,13 @@
           <a href="portfolio.html">Portfolio</a>
           <a href="#journey">Our journey</a>
           <a href="contact.html">Contact us</a>
+          <a class="fm-india-tab" href="fm-india.html">FM India</a>
           <a class="button" href="contact.html">Partner with us <span aria-hidden="true">↗</span></a>
         </div>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Turn on dark mode" aria-pressed="false">
+          <span class="theme-toggle-label">Dark Mode</span>
+          <span class="theme-toggle-track" aria-hidden="true"><span class="theme-toggle-knob"></span></span>
+        </button>
         <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open navigation" aria-controls="nav-links" aria-expanded="false">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
         </button>
@@ -250,18 +313,18 @@
       <section class="hero" id="home">
         <div class="hero-grid wrap">
           <div class="hero-content">
-            <div class="eyebrow">For the love of the game</div>
-            <h1>Find your<br>people.<br><span class="accent">Bring the</span><br>noise.</h1>
-            <p class="hero-copy">The best moments are better together. FanMania is where passion finds its people — and every fan gets a front-row seat.</p>
+            <div class="eyebrow">Here We Go</div>
+            <h1>Their favourite<br>characters.<br><span class="accent">Their everyday</span><br>essentials.<br><span class="accent">That's Fanmania.</span></h1>
+            <p class="hero-copy">FanMania brings beloved characters and iconic brands into everyday life through a diverse range of officially licensed kids' footwear, apparel and accessories. We partner with globally recognised entertainment and lifestyle brands to create character-inspired products that children love and families trust.</p>
             <div class="hero-actions">
               <a class="button" href="#join">Find your community <span aria-hidden="true">↗</span></a>
-              <a class="button button-outline" href="#about">Discover the vibe</a>
+              <a class="button button-outline" href="https://www.linkedin.com/company/fan-mania/home/" target="_blank" rel="noopener noreferrer">Discover the vibe</a>
             </div>
             <div class="hero-note">
               <div class="avatar-stack" aria-hidden="true">
                 <span class="avatar">J</span><span class="avatar">M</span><span class="avatar">A</span><span class="avatar">K</span>
               </div>
-              <span><strong>Your kind of people</strong> are already here</span>
+              <span><a href="https://www.linkedin.com/company/fan-mania/home/" target="_blank" rel="noopener noreferrer"><strong>Your kind of people</strong></a> are already here</span>
             </div>
           </div>
           <div class="visual">
@@ -274,45 +337,21 @@
         </div>
       </section>
 
-      <div class="ticker" aria-label="FanMania values">
+      <div class="ticker" aria-label="Footwear, Apparels, Accesories, We Bring Pop Culture To You, Fanmania">
         <div class="ticker-track" aria-hidden="true">
-          <span class="ticker-item">More than a game</span><span class="ticker-item">All fans welcome</span><span class="ticker-item">Feel every moment</span><span class="ticker-item">Together is better</span>
-          <span class="ticker-item">More than a game</span><span class="ticker-item">All fans welcome</span><span class="ticker-item">Feel every moment</span><span class="ticker-item">Together is better</span>
+          <span class="ticker-item">Footwear</span>
+          <span class="ticker-item">Apparels</span>
+          <span class="ticker-item">Accesories</span>
+          <span class="ticker-item">We Bring Pop Culture To You</span>
+          <span class="ticker-item">Fanmania</span>
+          <span class="ticker-item">Footwear</span>
+          <span class="ticker-item">Apparels</span>
+          <span class="ticker-item">Accesories</span>
+          <span class="ticker-item">We Bring Pop Culture To You</span>
+          <span class="ticker-item">Fanmania</span>
         </div>
       </div>
 
-      <section class="section wrap" id="about">
-        <div class="section-heading reveal">
-          <div>
-            <div class="eyebrow">This is your home crowd</div>
-            <h2>Bring your passion.<br><span>Find your people.</span></h2>
-          </div>
-          <p>From match-day nerves to last-second wins, we make room for every feeling, every fan, and every unforgettable moment.</p>
-        </div>
-        <div class="feature-grid" id="community">
-          <article class="feature-card reveal">
-            <span class="feature-number">01 / YOUR CREW</span>
-            <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M2.8 19c.4-3.3 2.7-5 6.2-5s5.8 1.7 6.2 5M16 5.2a3.2 3.2 0 0 1 0 6.2m2 2.7c2 .7 3 2.3 3.2 4.9"/></svg></div>
-            <h3>Find your fan family</h3>
-            <p>Meet the people who get it. Share your colors, your chants, and that thing your team always does.</p>
-            <span class="card-watermark" aria-hidden="true">01</span>
-          </article>
-          <article class="feature-card reveal">
-            <span class="feature-number">02 / ALL THE FEELS</span>
-            <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20.8 8.9c0 5.3-8.8 11-8.8 11s-8.8-5.7-8.8-11A4.9 4.9 0 0 1 12 6.2a4.9 4.9 0 0 1 8.8 2.7Z"/><path d="m8.5 12 2.2 2.2 4.8-5"/></svg></div>
-            <h3>Feel every moment</h3>
-            <p>The highs hit harder when you share them. Make every game day a memory worth keeping.</p>
-            <span class="card-watermark" aria-hidden="true">02</span>
-          </article>
-          <article class="feature-card reveal">
-            <span class="feature-number">03 / YOUR GAME</span>
-            <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8m0-12.8L5.6 18.4"/><circle cx="12" cy="12" r="9"/></svg></div>
-            <h3>Make it yours</h3>
-            <p>Big league, local club, or a team only you know about — there's a place for your kind of fan.</p>
-            <span class="card-watermark" aria-hidden="true">03</span>
-          </article>
-        </div>
-      </section>
 
       <section class="journey" id="journey" aria-labelledby="journey-title">
         <div class="journey-inner wrap">
@@ -321,30 +360,29 @@
               <div class="eyebrow">The FanMania timeline</div>
               <h2 id="journey-title">One year at a time.<br><span>Still in motion.</span></h2>
             </div>
-            <p>Scrub through every year from 2004 to 2026. Confirmed company history is shown where available; other years are ready for your real milestones.</p>
+            <p>Scrub through every year from 2005 to 2026. Confirmed company history is shown where available; other years are ready for your real milestones.</p>
           </div>
           <div class="timeline-glass reveal">
-            <div class="timeline-content" aria-live="polite" aria-atomic="true">
-              <div class="timeline-year" id="timeline-year">2004</div>
+            <div class="timeline-content" data-year="2005" aria-live="polite" aria-atomic="true">
+              <div class="timeline-year" id="timeline-year">2005</div>
               <div class="timeline-detail">
                 <div class="year-label" id="timeline-label">The beginning</div>
                 <h3 id="timeline-title">FanMania starts its journey.</h3>
-                <p id="timeline-copy">FanMania started in 2004. Add the verified details of the founding and early years here.</p>
+                <p id="timeline-copy">Co-Founders and father-son duo, Jitendra &amp; Nitin Jaggi start Attires MENA in a 400 sqft rental office.</p>
                 <span class="timeline-unverified" id="timeline-status">Confirmed starting year</span>
               </div>
             </div>
             <div class="timeline-slider-row">
               <label class="section-kicker" for="timeline-slider">Explore the years</label>
-              <input class="timeline-range" id="timeline-slider" type="range" min="0" max="11" step="1" value="0" aria-valuetext="2004">
-              <div class="timeline-years" id="timeline-year-markers" aria-hidden="true"></div>
+              <input class="timeline-range" id="timeline-slider" type="range" min="0" max="13" step="1" value="0" aria-valuetext="2005">
             </div>
             <div class="timeline-controls">
               <button type="button" id="timeline-previous" aria-label="Go to previous year"><span aria-hidden="true">←</span> Previous year</button>
-              <span class="timeline-current">Selected year: <output id="timeline-output" for="timeline-slider">2004</output></span>
+              <span class="timeline-current">Selected year: <output id="timeline-output" for="timeline-slider">2005</output></span>
               <button type="button" id="timeline-next" aria-label="Go to next year">Next year <span aria-hidden="true">→</span></button>
             </div>
           </div>
-          <p class="journey-note">FanMania’s 2004 start and 2026 present-day endpoint are confirmed. Intermediate years are intentionally left as editable placeholders until verified company history is provided.</p>
+          <p class="journey-note">FanMania’s 2005 start and 2026 present-day endpoint are confirmed. Intermediate years are intentionally left as editable placeholders until verified company history is provided.</p>
         </div>
       </section>
 
@@ -352,9 +390,9 @@
         <div class="manifesto-inner wrap">
           <div>
             <div class="eyebrow">The crowd is better together</div>
-            <h2>Whatever you cheer for,<br>you belong here.</h2>
+            <h2>Whatever you cheer for,<br>We Are here.</h2>
           </div>
-          <a class="button" href="mailto:hello@fanmania.com">Join FanMania <span aria-hidden="true">↗</span></a>
+          <a class="button" href="mailto:shadma@fanmania.ae">Join FanMania <span aria-hidden="true">↗</span></a>
         </div>
       </section>
     </main>
@@ -364,8 +402,13 @@
         <a class="brand" href="#home" aria-label="FanMania home">
           <img src="Screenshot_2026-10-06_143455-removebg-preview.png" alt="FanMania">
         </a>
-        <p>© <span id="year"></span> FanMania. Made for the love of it.</p>
-        <div class="socials"><a href="#join">Instagram</a><a href="#join">TikTok</a><a href="#join">Contact</a></div>
+        <p>© <span id="year"></span> Fanmania.ae can do it.</p>
+        <div class="socials">
+          <a href="https://www.instagram.com/fanmaniame?exln=MTlsdDFkazhpcGY2Nw==" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a href="https://youtube.com/@fanmaniadubai?si=Xp51ItAUXbbGJ5VT" target="_blank" rel="noopener noreferrer">Youtube</a>
+          <a href="https://www.linkedin.com/company/fan-mania/home/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="contact.html">Contact</a>
+        </div>
       </div>
     </footer>
   </div>
@@ -391,6 +434,7 @@
     });
 
     const timelineSlider = document.getElementById("timeline-slider");
+    const timelineContent = document.querySelector(".timeline-content");
     const timelineYear = document.getElementById("timeline-year");
     const timelineLabel = document.getElementById("timeline-label");
     const timelineTitle = document.getElementById("timeline-title");
@@ -400,14 +444,10 @@
     const timelinePrevious = document.getElementById("timeline-previous");
     const timelineNext = document.getElementById("timeline-next");
 
-    const timelineYears = [2004, 2005, 2007, 2009, 2012, 2014, 2016, 2018, 2020, 2022, 2024, 2026];
-    const timelineMarkers = document.getElementById("timeline-year-markers");
-    timelineYears.forEach(year => {
-      const marker = document.createElement("span");
-      marker.textContent = String(year);
-      timelineMarkers.appendChild(marker);
-    });
-
+    const removedTimelineYears = new Set([2006, 2008, 2010, 2011, 2013, 2015, 2017, 2019]);
+    const timelineYears = Array.from({ length: 22 }, (_, index) => 2005 + index)
+      .filter(year => !removedTimelineYears.has(year));
+    timelineSlider.max = String(timelineYears.length - 1);
     const timelineData = timelineYears.map(year => {
       return {
         year,
@@ -418,47 +458,75 @@
       };
     });
 
-    timelineData[0] = {
-        year: 2004,
-        label: "The beginning",
-        title: "FanMania starts its journey.",
-        copy: "FanMania started in 2004. Add the verified details of the founding and early years here.",
-        status: "Confirmed starting year"
+    const setTimelineMilestone = (year, label, title, copy, status = "Company milestone") => {
+      const index = timelineYears.indexOf(year);
+      if (index !== -1) timelineData[index] = { year, label, title, copy, status };
     };
-    timelineData[timelineData.length - 1] = {
-        year: 2026,
-        label: "FanMania today",
-        title: "The story continues.",
-        copy: "In 2026, FanMania is an international licensing and children’s merchandise company working with entertainment and character IPs.",
-        status: "Present day"
-    };
+    setTimelineMilestone(2005, "The beginning", "FanMania starts its journey.", "Co-Founders and father-son duo, Jitendra & Nitin Jaggi start Attires MENA in a 400 sqft rental office.", "Confirmed starting year");
+    setTimelineMilestone(2007, "Regional expansion", "Expanding into Saudi Arabia.", "Expansion of business to Saudi Arabia with distribution in hypermarkets.");
+    setTimelineMilestone(2009, "Growing the team", "A new chapter in product design.", "Jitin Jaggi joins to take over Product Design and Sourcing.");
+    setTimelineMilestone(2012, "Entering licensed merchandise", "First licensing partnerships.", "Foray into the licensed merchandise business. First tie ups with Nickelodeon & Cartoon Network.");
+    setTimelineMilestone(2014, "Portfolio expansion", "A major licensing deal.", "Warner Brothers deal is signed and the license portfolio expands.");
+    setTimelineMilestone(2016, "A premier licensee", "The portfolio comes together.", "Deal with Disney completes the portfolio. We are now considered among region’s premier licensees.");
+    setTimelineMilestone(2018, "Fan Mania is born", "A new co-founder joins.", "Co-founder Akshay Gehi joins hands and Fan Mania is born.");
+    setTimelineMilestone(2020, "A new home in Jebel Ali", "Moving into a self-owned property.", "We move into a large 125,000 sqft self-owned property in Jebel Ali located within minutes of every major regional retailer’s warehouse.");
+    setTimelineMilestone(2021, "A growing creative team", "Four times the talent.", "The team quadruples in size. Fan Mania gets regarded as one of the finest creative teams in the industry.");
+    setTimelineMilestone(2026, "FanMania today", "The story continues.", "In 2026, FanMania is an international licensing and children’s merchandise company working with entertainment and character IPs.", "Present day");
 
     function updateTimeline() {
       const selectedIndex = Number(timelineSlider.value);
       const year = timelineYears[selectedIndex];
       const information = timelineData[selectedIndex];
 
-      timelineYear.textContent = String(year);
-      timelineLabel.textContent = information.label;
-      timelineTitle.textContent = information.title;
-      timelineCopy.textContent = information.copy;
-      timelineStatus.textContent = information.status;
       timelineOutput.value = String(year);
       timelineOutput.textContent = String(year);
       timelineSlider.setAttribute("aria-valuetext", String(year));
       timelineSlider.style.setProperty("--slider-progress", (selectedIndex / (timelineYears.length - 1) * 100) + "%");
       timelinePrevious.disabled = selectedIndex === 0;
       timelineNext.disabled = selectedIndex === timelineYears.length - 1;
+      timelineYear.textContent = String(year);
+      timelineLabel.textContent = information.label;
+      timelineTitle.textContent = information.title;
+      timelineCopy.textContent = information.copy;
+      timelineStatus.textContent = information.status;
+      if (timelineContent.dataset.year !== String(year)) {
+        timelineContent.dataset.year = String(year);
+        timelineContent.classList.remove("is-changing");
+        void timelineContent.offsetWidth;
+        timelineContent.classList.add("is-changing");
+      }
     }
 
-    timelineSlider.addEventListener("input", updateTimeline);
+    function advanceTimeline() {
+      const nextIndex = (Number(timelineSlider.value) + 1) % timelineYears.length;
+      timelineSlider.value = String(nextIndex);
+      updateTimeline();
+    }
+
+    function advanceTimelineWhenVisible() {
+      if (document.visibilityState === "visible") advanceTimeline();
+    }
+
+    let timelineAutoplay = window.setInterval(advanceTimelineWhenVisible, 12500);
+
+    function restartTimelineAutoplay() {
+      window.clearInterval(timelineAutoplay);
+      timelineAutoplay = window.setInterval(advanceTimelineWhenVisible, 12500);
+    }
+
+    timelineSlider.addEventListener("input", () => {
+      updateTimeline();
+      restartTimelineAutoplay();
+    });
     timelinePrevious.addEventListener("click", () => {
       timelineSlider.value = String(Number(timelineSlider.value) - 1);
       updateTimeline();
+      restartTimelineAutoplay();
     });
     timelineNext.addEventListener("click", () => {
       timelineSlider.value = String(Number(timelineSlider.value) + 1);
       updateTimeline();
+      restartTimelineAutoplay();
     });
     updateTimeline();
 

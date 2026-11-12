@@ -13,57 +13,101 @@
     :root{--red:#f12b43;--blue:#3178ff;--ink:#15171d;--muted:#555b66;--line:rgba(9,10,14,.13);--display:"Barlow Condensed",Impact,sans-serif;--body:"DM Sans",Arial,sans-serif;font-family:var(--body);scroll-behavior:smooth}
     *{box-sizing:border-box}body{margin:0;background:#fff;color:var(--ink)}a{color:inherit;text-decoration:none}button,input,select,textarea{font:inherit}
     .wrap{width:min(1160px,calc(100% - 48px));margin:auto}.skip{position:fixed;z-index:30;top:8px;left:8px;padding:12px;background:white;transform:translateY(-150%)}.skip:focus{transform:translateY(0)}
-    .topbar{position:fixed;z-index:20;inset:0 0 auto;height:78px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.92);box-shadow:0 5px 22px rgba(9,10,14,.045);backdrop-filter:blur(16px)}
-    .nav{height:100%;display:flex;align-items:center;justify-content:space-between}.brand img{display:block;width:150px;height:auto}.nav-links{display:flex;align-items:center;gap:23px;font-size:12px;font-weight:600}.nav-links a:hover,.nav-links [aria-current=page]{color:var(--red)}
-    .button{display:inline-flex;min-height:44px;align-items:center;justify-content:center;padding:0 18px;border:0;border-radius:3px;background:var(--red);color:white;font-size:11px;font-weight:700;cursor:pointer}.menu-toggle{display:none;width:42px;height:42px;border:1px solid var(--line);border-radius:4px;background:white}
-    main{padding-top:78px}.hero{padding:84px 0 66px;background:radial-gradient(ellipse at 86% 20%,rgba(49,120,255,.12),transparent 35%),linear-gradient(180deg,#f7f8fb,#fff)}
+    .topbar{position:fixed;z-index:20;inset:0 0 auto;height:78px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.92);box-shadow:0 5px 22px rgba(9,10,14,.045);backdrop-filter:blur(16px);transition:box-shadow .3s ease,background .3s ease}
+    .topbar.scrolled{background:rgba(255,255,255,.97);box-shadow:0 8px 30px rgba(9,10,14,.1)}
+    .nav{height:100%;display:flex;align-items:center;justify-content:space-between}.brand img{display:block;width:150px;height:auto;transition:transform .35s cubic-bezier(.2,.75,.25,1)}.brand:hover img{transform:scale(1.045) rotate(-1deg)}.nav-links{display:flex;align-items:center;gap:23px;font-size:12px;font-weight:600}.nav-links a:not(.button){position:relative}.nav-links a:not(.button)::after{position:absolute;right:0;bottom:-6px;left:0;height:2px;background:var(--red);content:"";transform:scaleX(0);transform-origin:left;transition:transform .25s ease}.nav-links a:not(.button):hover::after,.nav-links a[aria-current=page]::after{transform:scaleX(1)}.nav-links a:hover,.nav-links [aria-current=page]{color:var(--red)}
+    .button{position:relative;isolation:isolate;overflow:hidden;display:inline-flex;min-height:44px;align-items:center;justify-content:center;padding:0 18px;border:0;border-radius:3px;background:var(--red);color:white;font-size:11px;font-weight:700;cursor:pointer;transition:transform .25s ease,box-shadow .25s ease,background .25s ease}.button::before{position:absolute;z-index:-1;inset:0;background:linear-gradient(110deg,transparent 20%,rgba(255,255,255,.35) 48%,transparent 75%);content:"";transform:translateX(-130%);transition:transform .65s ease}.button:hover{transform:translateY(-3px);background:#d91f38;box-shadow:0 10px 24px rgba(241,43,67,.25)}.button:hover::before{transform:translateX(130%)}.button:active{transform:translateY(-1px) scale(.98)}.button:focus-visible,.menu-toggle:focus-visible{outline:3px solid var(--blue);outline-offset:3px}.menu-toggle{display:none;width:42px;height:42px;border:1px solid var(--line);border-radius:4px;background:white;transition:transform .2s ease,background .2s ease}.menu-toggle:hover{transform:rotate(6deg);background:#f7f8fb}
+    main{padding-top:78px}.hero{position:relative;isolation:isolate;overflow:hidden;padding:84px 0 66px;background:radial-gradient(ellipse at 86% 20%,rgba(49,120,255,.12),transparent 35%),linear-gradient(180deg,#f7f8fb,#fff)}.hero::before{position:absolute;z-index:-1;top:-250px;right:-160px;width:620px;height:620px;border:1px solid rgba(49,120,255,.11);border-top-color:rgba(49,120,255,.32);border-right-color:rgba(241,43,67,.22);border-radius:50%;box-shadow:0 0 0 38px rgba(49,120,255,.025),0 0 0 82px rgba(241,43,67,.025);content:"";animation:hero-orbit 48s linear infinite}.hero::after{position:absolute;z-index:-1;right:10%;bottom:6%;width:110px;height:110px;border:1px solid rgba(241,43,67,.16);border-radius:50%;content:"";animation:hero-pulse 4s ease-in-out infinite}
+    .hero .wrap{position:relative;z-index:1}.hero .eyebrow{animation:rise-in .65s .08s both}.hero h1{animation:rise-in .8s .18s both}.hero .intro{animation:rise-in .75s .32s both}
     .eyebrow{color:#585e69;font-size:10px;font-weight:700;letter-spacing:.17em;text-transform:uppercase}h1,h2,p{margin-top:0}h1,h2{font-family:var(--display);font-size:clamp(56px,8vw,96px);font-weight:900;letter-spacing:-.025em;line-height:.86;text-transform:uppercase}
     h1{max-width:780px;margin:17px 0 19px}h1 span{color:var(--red)}.intro{max-width:550px;color:var(--muted);font-size:14px;line-height:1.8}
     .contact-layout{display:grid;grid-template-columns:.78fr 1.22fr;gap:9%;align-items:start;padding:19px 0 88px}.contact-copy h2{max-width:440px;margin:0 0 16px;font-size:48px}.contact-copy p{max-width:360px;color:var(--muted);font-size:12px;line-height:1.85}
-    .inquiry-types{display:flex;flex-wrap:wrap;gap:7px;margin-top:22px}.inquiry-types span{padding:8px 10px;border:1px solid var(--line);font-size:8px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
-    form{display:grid;grid-template-columns:1fr 1fr;gap:13px;padding:25px;border:1px solid var(--line);background:linear-gradient(145deg,#f7f8fa,#fff)}
-    .field{display:flex;flex-direction:column;gap:7px}.field.full,.submit-row,.form-note{grid-column:1/-1}.field label{font-size:10px;font-weight:600}.field input,.field select,.field textarea{width:100%;min-height:44px;padding:11px;border:1px solid rgba(9,10,14,.21);border-radius:2px;background:white;color:var(--ink);font-size:11px}.field textarea{min-height:115px;resize:vertical}
+    .inquiry-types{display:flex;flex-wrap:wrap;gap:7px;margin-top:22px}.inquiry-types span{padding:8px 10px;border:1px solid var(--line);background:linear-gradient(135deg,#fff,#f8f9fb);font-size:8px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;transition:transform .25s ease,border-color .25s ease,background .25s ease,box-shadow .25s ease}.inquiry-types span:hover{transform:translateY(-4px) rotate(-1deg);border-color:rgba(241,43,67,.45);background:white;box-shadow:0 9px 20px rgba(21,23,29,.08)}.inquiry-types span:nth-child(even):hover{transform:translateY(-4px) rotate(1deg)}
+    form{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:13px;padding:25px;border:1px solid var(--line);background:linear-gradient(145deg,#f7f8fa,#fff);box-shadow:0 16px 46px rgba(21,23,29,.055);transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease}form:hover{transform:translateY(-4px);border-color:rgba(49,120,255,.22);box-shadow:0 24px 60px rgba(21,23,29,.1)}
+    .field{display:flex;flex-direction:column;gap:7px}.field.full,.submit-row,.form-note{grid-column:1/-1}.field label{font-size:10px;font-weight:600;transition:color .2s ease}.field:focus-within label{color:var(--red)}.field input,.field select,.field textarea{width:100%;min-height:44px;padding:11px;border:1px solid rgba(9,10,14,.21);border-radius:2px;background:white;color:var(--ink);font-size:11px;transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}.field input:hover,.field select:hover,.field textarea:hover{border-color:rgba(49,120,255,.55)}.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--blue);outline:0;box-shadow:0 0 0 4px rgba(49,120,255,.12);transform:translateY(-1px)}.field textarea{min-height:115px;resize:vertical}
     .submit-row{display:flex;align-items:center;gap:14px}.status{margin:0;color:#315d39;font-size:10px;line-height:1.5}.form-note{margin:0;color:#686e79;font-size:9px;line-height:1.7}
-    footer{padding:25px 0;background:#f3f4f6;color:#686e79;font-size:10px}.footer-row{display:flex;align-items:center;justify-content:space-between;gap:15px}footer img{width:125px}
+    footer{padding:25px 0;background:#f3f4f6;color:#686e79;font-size:10px}.footer-row{display:flex;align-items:center;justify-content:space-between;gap:15px}footer img{width:125px;transition:transform .3s ease}footer a:hover img{transform:scale(1.04)}footer a:not(:first-child){transition:color .2s ease}footer a:not(:first-child):hover{color:var(--red)}
+    .js-reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.75,.25,1)}.js-reveal.visible{opacity:1;transform:translateY(0)}.contact-form.js-reveal{transition-delay:.12s}
+    @keyframes rise-in{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}@keyframes hero-orbit{to{transform:rotate(360deg)}}@keyframes hero-pulse{0%,100%{transform:scale(.92);opacity:.5}50%{transform:scale(1.08);opacity:1}}
     @media(max-width:720px){.wrap{width:calc(100% - 36px)}.topbar{height:68px}.brand img{width:130px}.menu-toggle{display:grid;place-items:center}.nav{position:relative}.nav-links{position:absolute;top:67px;right:-18px;left:-18px;display:none;align-items:stretch;gap:0;padding:8px 18px 17px;border-bottom:1px solid var(--line);background:#fff}.nav-links.is-open{display:flex;flex-direction:column}.nav-links a:not(.button){padding:13px 3px;border-bottom:1px solid var(--line)}.nav-links .button{margin-top:12px}.hero{padding:62px 0 38px}.contact-layout{grid-template-columns:1fr;gap:25px;padding:10px 0 66px}.contact-copy h2{font-size:42px}form{padding:17px;gap:10px}}
     @media(max-width:430px){form{grid-template-columns:1fr}.field.full,.submit-row,.form-note{grid-column:1}.submit-row{align-items:flex-start;flex-direction:column}.footer-row{flex-wrap:wrap}.footer-row span{width:100%;order:3}}
-    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important}}
+    @media(max-width:720px){.hero::before{top:-210px;right:-350px;width:520px;height:520px}.hero::after{right:7%;bottom:5%;width:70px;height:70px}.contact-layout{gap:28px}.contact-copy h2{max-width:360px}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.js-reveal{opacity:1;transform:none}}
   </style>
+  <script src="dark-mode.js"></script>
+  <script src="page-animations.js"></script>
+  <link rel="stylesheet" href="dark-mode.css">
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
   <header class="topbar"><nav class="nav wrap" aria-label="Main navigation">
-    <a class="brand" href="fanmania.html" aria-label="FanMania home"><img src="Screenshot_2026-10-06_143455-removebg-preview.png" alt="FanMania"></a>
+    <a class="brand" href="index.html" aria-label="FanMania home"><img src="Screenshot_2026-10-06_143455-removebg-preview.png" alt="FanMania"></a>
     <div class="nav-links" id="nav-links">
-      <a href="fanmania.html#about">About</a><a href="products.html">Products</a><a href="portfolio.html">Portfolio</a><a href="fanmania.html#journey">Our journey</a><a href="contact.html" aria-current="page">Contact us</a><a class="button" href="#contact-form">Partner with us ↗</a>
+      <a href="index.html#about">About</a><a href="products.html">Products</a><a href="portfolio.html">Portfolio</a><a href="index.html#journey">Our journey</a><a href="contact.html" aria-current="page">Contact us</a><a class="fm-india-tab" href="fm-india.html">FM India</a><a class="button" href="#contact-form">Partner with us ↗</a>
     </div>
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Turn on dark mode" aria-pressed="false">
+      <span class="theme-toggle-label">Dark Mode</span>
+      <span class="theme-toggle-track" aria-hidden="true"><span class="theme-toggle-knob"></span></span>
+    </button>
     <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open navigation" aria-controls="nav-links" aria-expanded="false">☰</button>
   </nav></header>
   <main id="main">
     <section class="hero"><div class="wrap"><div class="eyebrow">Partnerships & business enquiries</div><h1>Let’s make<br><span>something matter.</span></h1><p class="intro">For licensing, retail, distribution and other business enquiries, share a few details and tell us what you have in mind.</p></div></section>
     <section class="contact-layout wrap" aria-label="Contact FanMania">
-      <div class="contact-copy"><div class="eyebrow">Start a conversation</div><h2>Good stories.<br>Great partners.</h2><p>Choose the enquiry type that fits best. FanMania’s verified contact information can be added here when available.</p><div class="inquiry-types"><span>Licensing</span><span>Retail</span><span>Distribution</span><span>Business enquiries</span></div></div>
-      <form id="contact-form">
+      <div class="contact-copy js-reveal"><div class="eyebrow">Start a conversation</div><h2>Good stories.<br>Great partners.</h2><p>Choose the enquiry type that fits best. FanMania’s verified contact information can be added here when available.</p><div class="inquiry-types"><span>Licensing</span><span>Retail</span><span>Distribution</span><span>Business enquiries</span></div></div>
+      <form id="contact-form" class="contact-form js-reveal">
         <div class="field"><label for="name">Your name *</label><input id="name" name="name" autocomplete="name" required></div>
         <div class="field"><label for="company">Company *</label><input id="company" name="company" autocomplete="organization" required></div>
         <div class="field"><label for="email">Business email *</label><input id="email" name="email" type="email" autocomplete="email" required></div>
         <div class="field"><label for="enquiry">Enquiry type *</label><select id="enquiry" name="enquiry" required><option value="">Select one</option><option>Licensing partnership</option><option>Retail</option><option>Distribution</option><option>Other business enquiry</option></select></div>
         <div class="field full"><label for="message">Message *</label><textarea id="message" name="message" required placeholder="A few details about your enquiry"></textarea></div>
-        <div class="submit-row"><button class="button" type="submit">Review enquiry ↗</button><p class="status" id="form-status" role="status" aria-live="polite"></p></div>
-        <p class="form-note">This form is a front-end demo and does not send or store messages. Connect a secure enquiry backend before publishing. No unverified email address or phone number is listed.</p>
+        <div class="submit-row"><button class="button" type="submit">Send enquiry ↗</button><p class="status" id="form-status" role="status" aria-live="polite"></p></div>
+        <p class="form-note">Submitting opens a pre-filled message in your default email app. Review it there and press Send to deliver your enquiry.</p>
       </form>
     </section>
   </main>
-  <footer><div class="footer-row wrap"><a href="fanmania.html"><img src="Screenshot_2026-10-06_143455-removebg-preview.png" alt="FanMania"></a><span>© <span id="year"></span> FanMania</span><a href="portfolio.html">Portfolio</a></div></footer>
+  <footer><div class="footer-row wrap"><a href="index.html"><img src="Screenshot_2026-10-06_143455-removebg-preview.png" alt="FanMania"></a><span>© <span id="year"></span> FanMania</span><a href="portfolio.html">Portfolio</a></div></footer>
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+    const topbar=document.querySelector(".topbar");
+    const updateTopbar=()=>topbar.classList.toggle("scrolled",window.scrollY>12);
+    updateTopbar();
+    window.addEventListener("scroll",updateTopbar,{passive:true});
+    if("IntersectionObserver" in window&&!window.matchMedia("(prefers-reduced-motion: reduce)").matches){
+      const revealObserver=new IntersectionObserver((entries,observer)=>entries.forEach(entry=>{
+        if(entry.isIntersecting){entry.target.classList.add("visible");observer.unobserve(entry.target)}
+      }),{threshold:.12});
+      document.querySelectorAll(".js-reveal").forEach(element=>revealObserver.observe(element));
+    }else{
+      document.querySelectorAll(".js-reveal").forEach(element=>element.classList.add("visible"));
+    }
     const toggle = document.getElementById("menu-toggle"), links = document.getElementById("nav-links");
     function closeMenu(){links.classList.remove("is-open");toggle.setAttribute("aria-expanded","false");toggle.setAttribute("aria-label","Open navigation")}
     toggle.addEventListener("click",()=>{const open=toggle.getAttribute("aria-expanded")==="true";toggle.setAttribute("aria-expanded",String(!open));toggle.setAttribute("aria-label",open?"Open navigation":"Close navigation");links.classList.toggle("is-open",!open)});
     links.querySelectorAll("a").forEach(link=>link.addEventListener("click",closeMenu));
     document.addEventListener("keydown",event=>{if(event.key==="Escape")closeMenu()});
     const form=document.getElementById("contact-form"),status=document.getElementById("form-status");
-    form.addEventListener("submit",event=>{event.preventDefault();if(!form.reportValidity())return;status.textContent="Your enquiry details are complete. This demo does not transmit messages; connect a secure enquiry service before launch."});
+    form.addEventListener("submit",event=>{
+      event.preventDefault();
+      if(!form.reportValidity())return;
+      const enquiry=new FormData(form);
+      const enquiryType=String(enquiry.get("enquiry")||"").trim();
+      const recipient=["Licensing partnership","Retail","Distribution"].includes(enquiryType)
+        ? "nitin@fanmania.ae"
+        : "kartik@fanmania.ae";
+      const body=[
+        "Name: "+enquiry.get("name"),
+        "Company: "+enquiry.get("company"),
+        "Business email: "+enquiry.get("email"),
+        "Enquiry type: "+enquiryType,
+        "",
+        "Message:",
+        enquiry.get("message")
+      ].join("\n");
+      const mailto="mailto:"+recipient+"?subject="+encodeURIComponent("FanMania business enquiry")+"&body="+encodeURIComponent(body);
+      status.textContent="Opening your email app with the enquiry. Send the message there to deliver it.";
+      window.location.href=mailto;
+    });
   </script>
 </body>
 </html>

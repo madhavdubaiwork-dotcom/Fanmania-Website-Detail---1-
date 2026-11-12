@@ -1,0 +1,286 @@
+:root {
+  --motion-soft-duration: 900ms;
+  --motion-soft-ease: cubic-bezier(.2, .75, .25, 1);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .motion-in,
+  .reveal,
+  .js-reveal {
+    opacity: 0;
+    transform: translate3d(0, 26px, 0) scale(.985);
+    transition: opacity var(--motion-soft-duration) var(--motion-soft-ease),
+      transform var(--motion-soft-duration) var(--motion-soft-ease),
+      box-shadow .7s ease,
+      border-color .7s ease,
+      background .7s ease;
+  }
+
+  .motion-ready .motion-in.is-visible,
+  .motion-ready .reveal.is-visible,
+  .motion-ready .js-reveal.is-visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  .topbar,
+  .nav-links a,
+  .button,
+  .feature-card,
+  .brand-panel,
+  .category,
+  .product-card,
+  .next-step,
+  .timeline-glass,
+  .artwork,
+  .contact-copy,
+  .contact-layout form,
+  .field,
+  .license-list span,
+  .inquiry-types span {
+    transition: transform .7s var(--motion-soft-ease),
+      box-shadow .7s ease,
+      border-color .7s ease,
+      background .7s ease,
+      opacity .7s ease;
+  }
+
+  .topbar:hover,
+  .button:hover,
+  .feature-card:hover,
+  .brand-panel:hover,
+  .category:hover,
+  .product-card:hover,
+  .next-step:hover,
+  .timeline-glass:hover,
+  .artwork:hover,
+  .contact-layout form:hover,
+  .field:hover {
+    transform: translateY(-6px);
+  }
+
+  .hero-video,
+  .artwork img,
+  .category-art img,
+  .brand-panel .glyph {
+    animation: gentle-float 12s ease-in-out infinite;
+  }
+}
+
+@keyframes gentle-float {
+  0%,
+  100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -8px, 0); }
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --ink: #f4f6fb;
+  --muted: #aab1bf;
+  --line: rgba(255,255,255,.14);
+}
+
+html[data-theme="dark"] body {
+  background: #11141a;
+  color: #f4f6fb;
+}
+
+html[data-theme="dark"] .topbar {
+  border-color: var(--line);
+  background: rgba(17,20,26,.94);
+}
+
+html[data-theme="dark"] .topbar.scrolled {
+  background: rgba(17,20,26,.98);
+}
+
+html[data-theme="dark"] .nav-links {
+  color: #e0e4ec;
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color .2s ease, transform .2s ease;
+}
+
+.theme-toggle:hover {
+  transform: translateY(-1px);
+  color: var(--blue, #3178ff);
+}
+
+.theme-toggle:focus-visible {
+  outline: 3px solid var(--blue, #3178ff);
+  outline-offset: 3px;
+}
+
+.theme-toggle-label {
+  line-height: 1;
+}
+
+.theme-toggle-track {
+  position: relative;
+  display: inline-block;
+  width: 38px;
+  height: 20px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(9,10,14,.08);
+  transition: background .2s ease, border-color .2s ease;
+}
+
+.theme-toggle-knob {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 1px 4px rgba(9,10,14,.22);
+  transition: transform .2s ease, background .2s ease;
+}
+
+html[data-theme="dark"] .theme-toggle,
+html[data-theme="dark"] .menu-toggle {
+  background: transparent;
+  color: #f4f6fb;
+}
+
+html[data-theme="dark"] .theme-toggle-track {
+  background: rgba(255,255,255,.12);
+  border-color: rgba(255,255,255,.22);
+}
+
+html[data-theme="dark"] .theme-toggle-knob {
+  transform: translateX(18px);
+  background: #f4f6fb;
+}
+
+html[data-theme="dark"] .hero {
+  background: radial-gradient(ellipse at 82% 25%, rgba(49,120,255,.14), transparent 38%), linear-gradient(180deg, #171c25, #11141a);
+}
+
+html[data-theme="dark"] .journey {
+  background: radial-gradient(ellipse at 75% 50%, rgba(49,120,255,.14), transparent 42%), linear-gradient(180deg, #151922, #11141a);
+}
+
+html[data-theme="dark"] .eyebrow,
+html[data-theme="dark"] .intro,
+html[data-theme="dark"] .category p,
+html[data-theme="dark"] .brand-category,
+html[data-theme="dark"] .portfolio-note,
+html[data-theme="dark"] .product-card p,
+html[data-theme="dark"] .timeline-detail p,
+html[data-theme="dark"] .journey-heading p,
+html[data-theme="dark"] .journey-note,
+html[data-theme="dark"] .footer,
+html[data-theme="dark"] footer {
+  color: #aab1bf;
+}
+
+html[data-theme="dark"] .ticker,
+html[data-theme="dark"] .licenses,
+html[data-theme="dark"] footer,
+html[data-theme="dark"] .footer {
+  background: #1b2029;
+}
+
+html[data-theme="dark"] .ticker {
+  border-color: var(--line);
+}
+
+html[data-theme="dark"] .ticker-item {
+  color: #e4e7ed;
+}
+
+html[data-theme="dark"] .category,
+html[data-theme="dark"] .brand-panel,
+html[data-theme="dark"] .product-card,
+html[data-theme="dark"] .next-step,
+html[data-theme="dark"] .timeline-glass,
+html[data-theme="dark"] .artwork,
+html[data-theme="dark"] .contact-layout form {
+  border-color: var(--line);
+  background: linear-gradient(145deg, #1d232d, #171c25);
+  color: #f4f6fb;
+}
+
+html[data-theme="dark"] .category-art {
+  background: #171c25;
+}
+
+html[data-theme="dark"] .category-copy,
+html[data-theme="dark"] figcaption {
+  background: #1b2029;
+  color: #aab1bf;
+}
+
+html[data-theme="dark"] .portfolio-note {
+  background: #1b2029;
+}
+
+html[data-theme="dark"] .license-list span,
+html[data-theme="dark"] .inquiry-types span {
+  border-color: var(--line);
+  background: #202630;
+  color: #f4f6fb;
+}
+
+html[data-theme="dark"] .field input,
+html[data-theme="dark"] .field select,
+html[data-theme="dark"] .field textarea {
+  border-color: rgba(255,255,255,.22);
+  background: #11141a;
+  color: #f4f6fb;
+}
+
+html[data-theme="dark"] .field input::placeholder,
+html[data-theme="dark"] .field textarea::placeholder {
+  color: #929baa;
+}
+
+html[data-theme="dark"] .form-note {
+  color: #aab1bf;
+}
+
+html[data-theme="dark"] .text-link {
+  border-color: var(--line);
+}
+
+html[data-theme="dark"] .text-link:hover {
+  background: #f4f6fb;
+  color: #11141a;
+}
+
+html[data-theme="dark"] .skip {
+  background: #1b2029;
+  color: #f4f6fb;
+}
+
+html[data-theme="dark"] .timeline-controls button {
+  border-color: rgba(255,255,255,.22);
+  background: rgba(17,20,26,.62);
+  color: #e4e7ed;
+}
+
+html[data-theme="dark"] .timeline-controls button:hover:not(:disabled) {
+  background: #252c38;
+}
+
+@media (max-width: 720px) {
+  html[data-theme="dark"] .nav-links {
+    border-color: var(--line);
+    background: rgba(17,20,26,.98);
+  }
+}
